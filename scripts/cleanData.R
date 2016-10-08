@@ -1,13 +1,17 @@
-data <- read.csv('../data/rawData.csv')
-attach(data)
+myData <- read.csv('../data/rawData.csv')
 
 ## normalizae day 
-data$DAY <- DAY - min(DAY)
+myData$DAY <- myData$DAY - min(myData$DAY)
 
 ## remove quantity with value 0
-data <- data[QUANTITY != 0 ,]
+myData <- myData[myData$QUANTITY != 0 ,]
 
 ## Add price per product 
-data$PRICE_PER_PRODUCT = BASE_SPEND_AMT / QUANTITY
+myData$PRICE_PER_PRODUCT = myData$BASE_SPEND_AMT / myData$QUANTITY
 
-write.csv(data, '../data/cleanData.csv')
+## Household demographics data 
+householdData <- myData[! duplicated(myData$household_key) ,]
+                          
+## ToDo(Phill) time series for household shopping                          
+                        
+write.csv(myData, '../data/cleanData.csv')
