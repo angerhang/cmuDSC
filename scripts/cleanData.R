@@ -15,3 +15,5 @@ householdData <- myData[! duplicated(myData$household_key) ,]
 ## ToDo(Phill) time series for household shopping                          
                         
 write.csv(myData, '../data/cleanData.csv')
+write.csv(householdData, '../data/householdData.csv')
+ 
