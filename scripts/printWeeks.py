@@ -53,14 +53,18 @@ if __name__ == '__main__':
             printidx = 0
             week_data = {}
             for household in households:
-                week_data[household] = [0,0,0,0,0,'','','','','']           
+                week_data[household] = [0,0,0,0,0,[],[],[],[],[]]           
             while rowidx >= 0:
                 if (idx < 7 and rowidx == 0) or rowidx == line_indexes[idx-7]:
                     for household in households:
-                       toprint = [str(printidx), str(printidx), household, str(week)] + week_data[household] + households[household] 
-                       toprint = [str(x) for x in toprint]
-                       fout.write(",".join(toprint) + '\n')
-                       printidx += 1
+                        printagg = []
+                        for temp in range(5, 10):
+                            tempset = set(week_data[household][temp])
+                            printagg.append("|".join(tempset))
+                        toprint = [str(printidx), str(printidx), household, str(week)] + week_data[household][0:5] + printagg + households[household] 
+                        toprint = [str(x) for x in toprint]
+                        fout.write(",".join(toprint) + '\n')
+                        printidx += 1
                     week = week - 1
                     idx = idx-7
                 
@@ -70,11 +74,11 @@ if __name__ == '__main__':
                 week_data[household][2] += float(data[rowidx][header.index('"LOY_CARD_DISC"')])
                 week_data[household][3] += float(data[rowidx][header.index('"COUPON_DISC"')])
                 week_data[household][4] += float(data[rowidx][header.index('"NET_SPEND_AMT"')])
-                week_data[household][5] += data[rowidx][header.index('"PRODUCT_ID"')] + '|'
-                week_data[household][6] += data[rowidx][header.index('"DEPARTMENT"')] + '|'
-                week_data[household][7] += data[rowidx][header.index('"COMMODITY_DESC"')] + '|'
-                week_data[household][8] += data[rowidx][header.index('"SUB_COMMODITY_DESC"')] + '|'
-                week_data[household][9] += data[rowidx][header.index('"PRICE_PER_PRODUCT"')] + '|'
+                week_data[household][5].append(data[rowidx][header.index('"PRODUCT_ID"')])
+                week_data[household][6].append(data[rowidx][header.index('"DEPARTMENT"')])
+                week_data[household][7].append(data[rowidx][header.index('"COMMODITY_DESC"')])
+                week_data[household][8].append(data[rowidx][header.index('"SUB_COMMODITY_DESC"')])
+                week_data[household][9].append(data[rowidx][header.index('"PRICE_PER_PRODUCT"')])
                 rowidx = rowidx - 1
 
 
