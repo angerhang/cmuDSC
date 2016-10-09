@@ -81,6 +81,7 @@ for (house in houseId){
 # cleaning up
 finalData <- weekData[weekData$WEEK > 0, ]
 finalData$GET_EGGS[finalData$GET_EGGS > 0] <- 1
+finalData$GET_EGGS[finalData$NEXT_EGGS > 0] <- 1
 finalData <- merge(x = finalData, y = houseData, by = 'household_key', all = FALSE)
 write.csv(finalData, '../data/weekData.csv')
  
