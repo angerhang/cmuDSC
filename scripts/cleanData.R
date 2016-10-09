@@ -20,3 +20,4 @@ householdData <- myData[! duplicated(myData$household_key) ,]
 
 write.csv(myData, '../data/cleanData.csv')
 write.csv(householdData, '../data/householdData.csv')
+   
