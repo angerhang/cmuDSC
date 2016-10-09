@@ -74,10 +74,12 @@ if __name__=="__main__":
                         data_split.insert(0, "\"" + str(row_count) + "\"")
                         data_split.insert(1, str(row_count))
                         data_split.insert(2, hId)
+                        data_split.append(str(0))
                         data_split = [str(x) for x in data_split]
                         toprint = ",".join(data_split)
                         lines.append(toprint)
                         row_count = row_count + 1
+
             for line in lines:
                 rout.write(line + '\n')
 
