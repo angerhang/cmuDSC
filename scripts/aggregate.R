@@ -48,7 +48,7 @@ for (house in houseId){
   for (i in weekStart) {
     firstDay = i
     lastDay = i - 6
-    thisWeek <- weekHouseData[(weekHouseData$DAY <= firstDay) && (weekHouseData$DAY >= lastDay), ]
+    thisWeek <- weekHouseData[(weekHouseData$DAY <= firstDay) & (weekHouseData$DAY >= lastDay), ]
     # if no entry is found then we put all the numerical value as 0
     if (nrow(thisWeek) == 0) {
       thisWeek <- dummyRow
@@ -57,7 +57,6 @@ for (house in houseId){
     } else {
       thisWeek <- aggregate(cbind(QUANTITY,  BASE_SPEND_AMT, NET_SPEND_AMT, LOY_CARD_DISC, COUPON_DISC, GET_EGGS)
                             ~ household_key , data=thisWeek, sum, na.rm= TRUE)
-      print(thisWeek)
     }
     thisWeek$WEEK = weekN
     weekN = weekN - 1
@@ -71,4 +70,5 @@ finalData <- weekData[weekData$WEEK > 0, ]
 finalData$GET_EGGS[finalData$GET_EGGS > 0] <- 1
 finalData <- merge(x = finalData, y = houseData, by = 'household_key', all = FALSE)
 write.csv(finalData, '../data/weekData.csv')
-
+ 
+ 
