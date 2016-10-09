@@ -337,7 +337,7 @@
 % make the title area
 \maketitle
 \section{Methodology}
-Our data analyssi composes for the following steps:
+Our data analysis is composed of the following steps:
 \begin{itemize}
 \item Cleaning and pre-processing data
 \item Exploratory analysis
@@ -362,11 +362,15 @@ meta-data for the purchases. \\
 
 \section{Exploratory analysis}
 This is largely done prior to the release of the question, and a HTML page in the visu
-folder contains our work. Primarily we tried to udnerstand the the customer segmentation of the shop.
+folder contains our work. Primarily, we tried to understand the the customer segmentation of the shop.
 
 \section{Feature engineering}
 For feature engineering, we explored the relationships between different pairs of variables, 
-in order to decide what features would be relevant to the task. Examples: 
+in order to decide what features would be relevant to the task. Furthermore, we had to 
+take into account the complexity of the features, because too complicated features would 
+likely lead to overfitting, and would be hard to iterate over the short time of the contest. 
+In the end, we decided upon looking at quantity and money spent for that particular day, 
+whether or not the household bought eggs in the previous week, and discounts.
 
 \section{Model Experiments}
 In this competition, we explored the results of three strong state-of-the-art methods in classification: logistic regression, random forests, and Gradient Boosting Machines. \\
@@ -374,8 +378,10 @@ We trained each model with the same set of features: \\
 
 \section{Baselines}
 We have two baseline models used for comparison. The first one is based off the 
-observation that our output parameter of the data is heavily skewed. 
-
+observation that our output parameter of the data is heavily skewed. That is, the probability 
+that any given week and any given household has a purchase of eggs is about $0.133$. 
+Thus, a baseline model that predicts no eggs all the time will be skewed towards a 
+high brier score. \\
 
 The second baseline is trying the probability that each household purchasing eggs as a Bernoulli  random variable, so we have a
 binomial distribution in this case. The conditional probability is given by:
@@ -399,7 +405,13 @@ binomial distribution in this case. The conditional probability is given by:
  \hline
 \end{tabular}
 
+\section{Conclusion}
 
+Of the three models that we tested, XGBoost (Gradient Boosting Machines) worked 
+the best. However, because of the skew of the data, the baseline still performed 
+much better than all the models. Further directions for research include more 
+feature engineering, and using a different metric like Precision/Recall for 
+the evaluation of the model.
 
 \end{document}
 
