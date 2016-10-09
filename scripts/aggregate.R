@@ -44,6 +44,7 @@ write.csv(dayData, '../data/dayData.csv')
 weekStart <- seq(from = 204, to = 0, by = -7)
 for (house in houseId){
   weekN <- 28
+  lastWeekEgg = 0
   weekHouseData <- dayData[dayData$household_key == house ,]
   for (i in weekStart) {
     firstDay = i
@@ -58,12 +59,14 @@ for (house in houseId){
       thisWeek <- aggregate(cbind(QUANTITY,  BASE_SPEND_AMT, NET_SPEND_AMT, LOY_CARD_DISC, COUPON_DISC, GET_EGGS)
                             ~ household_key , data=thisWeek, sum, na.rm= TRUE)
     }
+    temp <- thisWeek$GET_EGGS
+    thisWeek$GET_EGGS <- lastWeekEgg
+    lastWeekEgg <- temp
     thisWeek$WEEK = weekN
     weekN = weekN - 1
     weekData <- rbind(weekData, thisWeek)
   }
 }
-
 
 # cleaning up
 finalData <- weekData[weekData$WEEK > 0, ]
