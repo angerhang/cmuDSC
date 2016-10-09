@@ -337,14 +337,34 @@
 \maketitle
 \section{Findings}
 
-\section{Methdology}
+\section{Data Exploration}
+We took multiple steps to first clean and process our data. Firstly, we noticed that
+there were multiple entires in which the QUANTITY, as well as other relevant variables
+like the BASE\_SPEND\_AMT and NET\_SPEND\_AMT were all 0. This made up approximately 3000
+of the 300,000 total rows of our dataset. Furthermore, we normalized fields like the DAY
+from 500 to 700 to 0 to 20. This makes our data more palatable to us and the models. 
+Finally, we added a boolean field, "GET\_EGGS", that represented whether or not the current
+entry was an egg purchase or not.\\
+
+Then, we took each grocery transaction, and aggregated them together into tables representing 
+transactions by day, and then transactions by month, per household. This was done by 
+taking a particular day/month, aggregating the QUANTITY and SPEND fields, and appending 
+metadata for the purchases. \\
+
+For feature engineering, we explored the relationships between different pairs of variables, 
+in order to decide what features would be relevant to the task. Examples: 
+
+\section{Model Experiments}
+In this competition, we explored the results of three strong state-of-the-art methods in classification: logistic regression, random forests, and Gradient Boosting Machines. \\
+We trained each model with the same set of features: \\
 
 \section{Baseline}
-We have two baseline models used for comparision. The first one is just pure chance, randomly
-select a half to be true and a half to be false as the response vector. \\
+We have two baseline models used for comparision. The first one is based off the 
+observation that our output parameter of the data is heavily skewed. 
 
-The second baseline is trying the probability that each household purchasing eggs as a bernoulli and we have a
-binomial distrbution in the case and the conditionay probabilit is given by:
+
+The second baseline is trying the probability that each household purchasing eggs as a bernoulli  random variable, so we have a
+binomial distrbution in this case. The conditional probability is given by:
 \begin{align*}
   P\{GET\ EGGS\} &= \frac{\sum_{i}^{household}\sum_{j}^{day}GET\ EGGS_{ij}}{\sum_{i}^{household}\sum_{j}^{day}1} \\
   P\{GET\ EGGS |\ week\} &= 1 - P\{GET NO EGG\} \\
