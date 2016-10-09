@@ -9,6 +9,9 @@ myData <- myData[myData$QUANTITY != 0 ,]
 ## Add price per product 
 myData$PRICE_PER_PRODUCT = myData$BASE_SPEND_AMT / myData$QUANTITY
 
+## Add egg variable 
+myData$GET_EGGS = as.integer(myData$COMMODITY_DESC == 'EGGS')
+  
 ## Household demographics data 
 householdData <- myData[! duplicated(myData$household_key) ,]
                           
