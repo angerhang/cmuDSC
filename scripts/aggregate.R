@@ -32,7 +32,8 @@ dummyRow$COUPON_DISC <- 0
 dummyRow$GET_EGGS <- 0
 dummyRow$PRICE_PER_PRODUCT <- NULL
 dummyRow$DAY <- NULL
-
+dummyRow$NEXT_EGGS <- 0
+ 
 # add the meta data such as kids_number and income_category
 dayData <- merge(x = dayData, y = houseData, by = 'household_key', all = FALSE)
 dayData$X <- NULL
@@ -48,8 +49,12 @@ for (house in houseId){
   weekHouseData <- dayData[dayData$household_key == house ,]
   for (i in weekStart) {
     firstDay = i
-    lastDay = i - 6
+    lastDay = firstDay - 6
+    nextFirst = i - 7
+    nextLastDay = nextFirst - 6
     thisWeek <- weekHouseData[(weekHouseData$DAY <= firstDay) & (weekHouseData$DAY >= lastDay), ]
+    nextWeek <- weekHouseData[(weekHouseData$DAY <= nextFirst) & (weekHouseData$DAY >= nextLastDay), ]
+    
     # if no entry is found then we put all the numerical value as 0
     if (nrow(thisWeek) == 0) {
       thisWeek <- dummyRow
@@ -59,15 +64,20 @@ for (house in houseId){
       thisWeek <- aggregate(cbind(QUANTITY,  BASE_SPEND_AMT, NET_SPEND_AMT, LOY_CARD_DISC, COUPON_DISC, GET_EGGS)
                             ~ household_key , data=thisWeek, sum, na.rm= TRUE)
     }
-    temp <- thisWeek$GET_EGGS
-    thisWeek$GET_EGGS <- lastWeekEgg
-    lastWeekEgg <- temp
+    if (nrow(nextWeek) == 0){
+      nextEgg = 0
+    } else {
+      nextWeek <- aggregate(cbind(QUANTITY,  BASE_SPEND_AMT, NET_SPEND_AMT, LOY_CARD_DISC, COUPON_DISC, GET_EGGS)
+                            ~ household_key , data=nextWeek, sum, na.rm= TRUE)
+      nextEgg = sum(nextWeek$GET_EGGS)
+    } 
+    thisWeek$NEXT_EGGS <- nextEgg
     thisWeek$WEEK = weekN
     weekN = weekN - 1
     weekData <- rbind(weekData, thisWeek)
   }
 }
-
+ 
 # cleaning up
 finalData <- weekData[weekData$WEEK > 0, ]
 finalData$GET_EGGS[finalData$GET_EGGS > 0] <- 1
