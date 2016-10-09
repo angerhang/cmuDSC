@@ -1,19 +1,22 @@
 # Third Place repo for CMU data science cup 2016 
 
-##Data Cleaning
-* Removed rows in the data that had quantity 0 
-* Normalized days to begin at 0  
+## Directory 
+* data: the raw data and the intermediate datasets
+* models: where training takes place
+* report: the two-page report and its tex source
+* scripts: the processing scripts
+* visu: some exploratory visualizations done before hand
 
-##Feature Engineering
+## Data Cleaning
+* Removed rows in the data that had quantity 0 
+* Normalized days to begin at 0 
+
+## Feature Engineering
 Insert columns for:
 * Price per Product
 * Number of Eggs
 
-##Key Results
-
-##Methods
-
-##Dependencies
+## Dependencies
 Python
 * Numpy
 * Pandas
@@ -21,4 +24,6 @@ Python
 * Sklearn
 * Patsy 
 R
+* RCurl
+
 

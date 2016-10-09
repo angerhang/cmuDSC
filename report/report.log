@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.1.22)  9 OCT 2016 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/MacPorts 2015_8) (preloaded format=pdflatex 2016.1.22)  9 OCT 2016 16:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -312,7 +312,7 @@ Overfull \hbox (3.92705pt too wide) in paragraph at lines 387--387
 Here is how much of TeX's memory you used:
  2941 strings out of 494185
  44444 string characters out of 6156888
- 109453 words of memory out of 5000000
+ 110453 words of memory out of 5000000
  6236 multiletter control sequences out of 15000+600000
  31200 words of font info for 62 fonts, out of 8000000 for 9000
  433 hyphenation exceptions out of 8191
@@ -325,7 +325,7 @@ exmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/local/share/texmf-t
 exlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/local/share/texmf-texlive/
 fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/fonts
 /type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (1 page, 71701 bytes).
+Output written on report.pdf (1 page, 71893 bytes).
 PDF statistics:
  37 PDF objects out of 1000 (max. 8388607)
  26 compressed objects within 1 object stream
