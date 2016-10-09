@@ -17,12 +17,11 @@ if __name__ == '__main__':
             data = [line.split(',') for line in lines]
             header = data[0]
             data = data[1:]
-            print header
-            print_header = '''"","X","household_key","WEEK","QUANTITY","BASE_SPEND_AMT",
-                           "LOY_CARD_DISC","COUPON_DISC","NET_SPEND_AMT","PRODUCT_ID",
-                           "DEPARTMENT","COMMODITY_DESC","SUB_COMMODITY_DESC", "PRICE_PER_PRODUCT",
-                           "AGE_DESC","MARITAL_STATUS_CODE","INCOME_DESC","HOMEOWNER_DESC",
-                           "HH_COMP_DESC","HOUSEHOLD_SIZE_DESC","KID_CATEGORY_DESC"\n'''
+            print_header = '"","X","household_key","WEEK","QUANTITY","BASE_SPEND_AMT",'
+            print_header += '"LOY_CARD_DISC","COUPON_DISC","NET_SPEND_AMT","PRODUCT_ID",'
+            print_header += '"DEPARTMENT","COMMODITY_DESC","SUB_COMMODITY_DESC", "PRICE_PER_PRODUCT",'
+            print_header += '"AGE_DESC","MARITAL_STATUS_CODE","INCOME_DESC","HOMEOWNER_DESC",'
+            print_header += '"HH_COMP_DESC","HOUSEHOLD_SIZE_DESC","KID_CATEGORY_DESC"\n'
             fout.write(print_header)
 
             # Stores metadata
