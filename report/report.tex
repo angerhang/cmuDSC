@@ -334,23 +334,23 @@
 %\IEEEspecialpapernotice{(Invited Paper)}
 
 % make the title area
+\maketitle
+\section{Findings}
 
+\section{Methdology}
 
 \section{Baseline}
-The baseline model is using the average probability of a household getting eggs on a particular day 
+We have two baseline models used for comparision. The first one is just pure chance, randomly
+select a half to be true and a half to be false as the response vector. \\
+
+The second baseline is trying the probability that each household purchasing eggs as a bernoulli and we have a
+binomial distrbution in the case and the conditionay probabilit is given by:
 \begin{align*}
   P\{GET\ EGGS\} &= \frac{\sum_{i}^{household}\sum_{j}^{day}GET\ EGGS_{ij}}{\sum_{i}^{household}\sum_{j}^{day}1} \\
   P\{GET\ EGGS |\ week\} &= 1 - P\{GET NO EGG\} \\
   &= 1 - (1 -  P\{GET\ EGGS\})^7 \\
   &= 0.126284
 \end{align*}
-
-
-\subsection{Subsection Heading Here}
-
-
-
-\section{Conclusion}
 
 
 
