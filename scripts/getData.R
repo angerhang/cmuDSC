@@ -9,3 +9,4 @@ url <- ('http://www.stat.cmu.edu/tartandatasciencecup/episodeII/transaction_data
 datafile <- getURI(url)
 myData <- read.csv(textConnection(datafile), header=T)
 write.csv(myData, file = file.path('../data/rawData.csv'))
+ 
