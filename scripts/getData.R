@@ -9,4 +9,11 @@ url <- ('http://www.stat.cmu.edu/tartandatasciencecup/episodeII/transaction_data
 datafile <- getURI(url)
 myData <- read.csv(textConnection(datafile), header=T)
 write.csv(myData, file = file.path('../data/rawData.csv'))
- 
+
+url <- ('www.stat.cmu.edu/tartandatasciencecup/episodeII/team_name.csv')
+datafile <- getURI(url)
+myData <- read.csv(textConnection(datafile), header=T)
+nrow(predictions)
+
+(unique(finalData$household_key))
+predictions <- read.csv('../predictions.csv', header = FALSE)
