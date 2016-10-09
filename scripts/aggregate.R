@@ -81,8 +81,13 @@ for (house in houseId){
 # cleaning up
 finalData <- weekData[weekData$WEEK > 0, ]
 finalData$GET_EGGS[finalData$GET_EGGS > 0] <- 1
-finalData$GET_EGGS[finalData$NEXT_EGGS > 0] <- 1
+finalData$NEXT_EGGS[finalData$NEXT_EGGS > 0] <- 1
 finalData <- merge(x = finalData, y = houseData, by = 'household_key', all = FALSE)
 write.csv(finalData, '../data/weekData.csv')
- 
+
+# final week feature used for prediction
+finalWeek <- finalData[finalData$WEEK == 28, ]
+write.csv(finalWeek, "finalWeek.csv")
+write.csv(finalWeek, "../data/finalWeek.csv")
+
  
